@@ -19,17 +19,17 @@ public class UnitManager : MonoBehaviour
     [Header("Misc")]
     [SerializeField] private Animator unitAnimator;
     public bool AttacksAreAoE = true;
-    [SerializeField] private List<GameObject> targettedEnemies = new List<GameObject>();
+    [SerializeField] private List<GameObject> targettedEnemies = new();
 
 
     /// MANAGING FUNCTIONSs
     private void OnEnable()
     {
-        setVariables();
-        StartCoroutine(attackRangeCheck());
+        SetVariables();
+        StartCoroutine(AttackRangeCheck());
     }
 
-    private void setVariables()
+    private void SetVariables()
     {
         unitCurrentHP = unitMaxHP;
 
@@ -40,7 +40,7 @@ public class UnitManager : MonoBehaviour
     }
 
     /// ATTACKING FUNCTIONS
-    IEnumerator attackRangeCheck()
+    IEnumerator AttackRangeCheck()
     {
         Collider[] spottedGameObjects = Physics.OverlapSphere(unitAttackSource.transform.position, unitAtkRange);
         if (AttacksAreAoE)
@@ -62,7 +62,7 @@ public class UnitManager : MonoBehaviour
 
     private void StartAttack()
     {
-        unitAnimator.SetTrigger("startAttackAnim");
+        //unitAnimator.SetTrigger("startAttackAnim");
     }
 
     public void DealDamage()

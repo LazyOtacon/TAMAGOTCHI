@@ -83,7 +83,6 @@ public class Character_Base : MonoBehaviour
         finalStats.firerate += extraStats.firerate;
         finalStats.firerate = Mathf.Clamp(finalStats.firerate, 0.01f, Mathf.Infinity);
 
-
         return finalStats;
     }
 
@@ -107,7 +106,7 @@ public class Character_Base : MonoBehaviour
 
     public virtual void UpdateSprite()
     {
-
+        // change sprite based on current health
     }
 
     public virtual void DoAttack(Character_Base enemy)
@@ -119,7 +118,7 @@ public class Character_Base : MonoBehaviour
 
     public virtual void OnRemoved()
     {
-        if (onDeathEvent != null) onDeathEvent.Invoke();
+        onDeathEvent?.Invoke(); // invoke if not null
         canBeTarget = false;
         AI_StateMachine.OnRemoved();
         AI_StateMachine = null;
