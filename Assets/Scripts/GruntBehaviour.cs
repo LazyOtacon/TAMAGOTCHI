@@ -13,10 +13,7 @@ public class GruntBehaviour : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Head" && gameObject.tag == "Feet" && gameObject.tag != "Head")
-        {
-            collision.gameObject.layer--;
-        }
+        
     }
 
     // Update is called once per frame
