@@ -30,11 +30,11 @@ public class Test : MonoBehaviour
     [HideInInspector] public OnDeathEvent onDeathEvent;
 
     Test enemy;
-
+    
     void Update()
     {
 
-
+        
         if (anim.GetBool(ATTACK))
         {
             DoAttack(enemy);
@@ -106,12 +106,16 @@ public class Test : MonoBehaviour
 
         return finalStats;
     }
-
+    private void Awake()
+    {
+        transform.parent = null;
+    }
     public virtual void Heal(float heal)
     {
         health += heal;
         if (health > GetCurrentStats().maxHealth) health = GetCurrentStats().maxHealth;
         UpdateSprite();
+        
     }
 
     public virtual void TakeDamage(float damage)

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameButtonController : MonoBehaviour
 {
+    
     public int hireCost;
     public int healCost;
     public int healAmount;
