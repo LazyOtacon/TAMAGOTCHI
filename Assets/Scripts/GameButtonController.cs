@@ -23,6 +23,8 @@ public class GameButtonController : MonoBehaviour
     private void Start()
     {
         hireCostText.text = "" + hireCost;
+        healCostText.text = "" + healCost;
+        moraleCostText.text = "" + encourageCost;
     }
 
     public void Hire()
