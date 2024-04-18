@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [System.Serializable]
 public struct UnitStats
@@ -28,6 +29,8 @@ public class Character_Base : MonoBehaviour
     protected float health = 1;
 
     public LayerMask allyLayer, enemyLayer;
+
+    [SerializeField] Transform[] nodesBase;
 
     [HideInInspector] public string nameID;
     [HideInInspector] protected AI_Machine AI_StateMachine;
@@ -145,11 +148,15 @@ public class Character_Base : MonoBehaviour
         protected string nextState;
         protected IEnumerator[] States;
 
+        [SerializeField] Transform[] nodes;
+        [SerializeField] int currentNode = 0;
         public AI_Machine(Character_Base parent, MonoBehaviour mono)
         {
             this.parent = parent;
             this.mono = mono;
             nextState = currentState;
+
+            nodes = parent.nodesBase;
 
             mono.StartCoroutine(GetNextCoroutine());
         }
@@ -194,6 +201,27 @@ public class Character_Base : MonoBehaviour
 
             while (currentState == nextState) //Tick state
             {
+                yield return new WaitUntil(() => parent.Tick() == true);
+            }
+
+            //OnLeave state
+
+            mono.StartCoroutine(GetNextCoroutine());
+
+            yield break;
+        }
+
+        protected virtual IEnumerator Chase() //this is the template for all AI states
+        {
+            currentState = nextState;
+
+            //OnEnter state
+
+            while (currentState == nextState) //Tick state
+            {
+                NavMeshAgent agent = parent.GetComponent<NavMeshAgent>();
+                agent.destination = nodes[currentNode].position;
+                currentNode += 1;
                 yield return new WaitUntil(() => parent.Tick() == true);
             }
 

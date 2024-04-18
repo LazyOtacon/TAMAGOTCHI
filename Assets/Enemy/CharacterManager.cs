@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class UnitManager : MonoBehaviour
+public class UnitManager : Character_Base
 {
     [Header("Health Stats")]
     [SerializeField] private int unitMaxHP;
