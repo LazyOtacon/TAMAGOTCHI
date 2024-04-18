@@ -66,6 +66,7 @@ public class NumberController : MonoBehaviour
         {
             SpawnDilemma();
             currentCount = 0;
+            dilemmaFrequency = Random.Range(dilemmaFrequency, dilemmaFrequency*2 +1);
         }
         currentCount++;
         ContinueStatLoop();

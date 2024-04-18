@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class DilemmaHandler : MonoBehaviour
 {
+    [SerializeField] GameObject mainWindow;
+
     public void CloseWindow()
     {
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        SceneManager.UnloadSceneAsync(gameObject.scene.buildIndex);
     }
 
     public void AddMorale(int morale) 
@@ -31,7 +33,8 @@ public class DilemmaHandler : MonoBehaviour
     }
 
     public void ShowOutcome(GameObject outcome)
-    { 
+    {
+        mainWindow.SetActive(false);
         outcome.SetActive(true);
     }
 }
