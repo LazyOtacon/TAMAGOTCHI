@@ -73,15 +73,15 @@ public class Test : MonoBehaviour
         if (transform.position != target.position)
         {   
             float speed = GetCurrentStats().speed;
-
+            Vector2 speedVector = new Vector2(speed, 0f);
             if (isLeft)
             {
                 speed *= -1;
             }
 
-            rb.velocity = new Vector2(speed, 0f);
+            rb.AddForce(speedVector);
         }
-        rb.velocity = new Vector2(0f,0f);
+        rb.totalForce = new Vector2(0f,0f);
         //transform.position = target.position;
     }
 

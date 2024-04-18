@@ -60,6 +60,7 @@ public class NumberController : MonoBehaviour
     }
     void ContinueStatLoop()
     {
+        
         PlayerPrefs.SetInt(INFLUENCESTAT, PlayerPrefs.GetInt(INFLUENCESTAT) + PlayerPrefs.GetInt(DUDECOUNTER));
         influenceGain.text = "+ " + PlayerPrefs.GetInt(DUDECOUNTER);
         PlayerPrefs.SetFloat(FOODLEFT, PlayerPrefs.GetFloat(FOODLEFT) - 1);
