@@ -37,7 +37,7 @@ public class NumberController : MonoBehaviour
     {
         PlayerPrefs.SetInt(INFLUENCESTAT, 0);
         PlayerPrefs.SetInt(MORALESTAT, 0);
-        PlayerPrefs.GetFloat(HEALTHSTAT, maxHealth);
+        PlayerPrefs.SetFloat(HEALTHSTAT, maxHealth);
         PlayerPrefs.SetInt(DUDECOUNTER, 1);
     }
 
