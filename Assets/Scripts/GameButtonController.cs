@@ -11,12 +11,18 @@ public class GameButtonController : MonoBehaviour
     public int healAmount;
     public int encourageCost;
     public int encourageAmount;
+
+    [SerializeField] int maxUnits;
+    [SerializeField] Transform spawner;
+    [SerializeField] GameObject unitToSpawn;
+
     public void Hire()
     {
-        if (hireCost<=PlayerPrefs.GetInt(NumberController.INFLUENCESTAT))
+        if (hireCost<=PlayerPrefs.GetInt(NumberController.INFLUENCESTAT) && PlayerPrefs.GetInt(NumberController.DUDECOUNTER) + 1 <= maxUnits)
         {
             PlayerPrefs.SetInt(NumberController.DUDECOUNTER, PlayerPrefs.GetInt(NumberController.DUDECOUNTER) + 1);
             PlayerPrefs.SetInt(NumberController.INFLUENCESTAT, PlayerPrefs.GetInt(NumberController.INFLUENCESTAT) - hireCost);
+            Instantiate(unitToSpawn, spawner);
         }
         
     }
