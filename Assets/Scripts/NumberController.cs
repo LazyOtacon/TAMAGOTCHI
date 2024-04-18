@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class NumberController : MonoBehaviour
@@ -23,15 +24,19 @@ public class NumberController : MonoBehaviour
     public Slider influence;
     public Slider morale;
     public Slider health;
-    //public TextMeshProUGUI satiation;
+
     public static string HEALTHSTAT = "health";
     public static string INFLUENCESTAT = "influence";
-    public static string FOODLEFT = "satiation";
     public static string MORALESTAT = "morale";
-    public static string MONEYSTAT = "money";
     public static string DUDECOUNTER = "soldiers";
 
     public bool combatActive;
+
+    [Header("Moral Dilemmas")]
+    [SerializeField] string[] scenes;
+    [SerializeField] int dilemmaFrequency;
+    int currentCount = 0;
+
 
     void SetInit() 
     {
@@ -56,13 +61,24 @@ public class NumberController : MonoBehaviour
     IEnumerator GameTick()
     {
         yield return new WaitForSeconds(1);
+
+        if (currentCount == dilemmaFrequency)
+        {
+            SpawnDilemma();
+            currentCount = 0;
+        }
+        currentCount++;
         ContinueStatLoop();
+    }
+
+    void SpawnDilemma() 
+    {
+        SceneManager.LoadSceneAsync(scenes[Random.Range(0, scenes.Length)]);
     }
     void ContinueStatLoop()
     {
         PlayerPrefs.SetInt(INFLUENCESTAT, PlayerPrefs.GetInt(INFLUENCESTAT) + PlayerPrefs.GetInt(DUDECOUNTER));
         influenceGain.text = "+ " + PlayerPrefs.GetInt(DUDECOUNTER);
-        PlayerPrefs.SetFloat(FOODLEFT, PlayerPrefs.GetFloat(FOODLEFT) - 1);
 
         if (combatActive && PlayerPrefs.GetInt(DUDECOUNTER) <= 0)
         {
