@@ -29,4 +29,9 @@ public class DilemmaHandler : MonoBehaviour
     {
         PlayerPrefs.SetInt(NumberController.INFLUENCESTAT, PlayerPrefs.GetInt(NumberController.INFLUENCESTAT) - influence);
     }
+
+    public void ShowOutcome(GameObject outcome)
+    { 
+        outcome.SetActive(true);
+    }
 }

@@ -245,6 +245,14 @@ MonoBehaviour:
   morale: {fileID: 1015180404}
   health: {fileID: 891499524}
   combatActive: 1
+  scenes:
+  - Moral
+  - Moral 1
+  - Moral 2
+  - Moral 3
+  - Moral 4
+  - Moral 5
+  dilemmaFrequency: 15
 --- !u!1 &134346862
 GameObject:
   m_ObjectHideFlags: 0

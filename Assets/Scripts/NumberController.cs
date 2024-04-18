@@ -73,7 +73,7 @@ public class NumberController : MonoBehaviour
 
     void SpawnDilemma() 
     {
-        SceneManager.LoadSceneAsync(scenes[Random.Range(0, scenes.Length)]);
+        SceneManager.LoadSceneAsync(scenes[Random.Range(0, scenes.Length)], LoadSceneMode.Additive);
     }
     void ContinueStatLoop()
     {
