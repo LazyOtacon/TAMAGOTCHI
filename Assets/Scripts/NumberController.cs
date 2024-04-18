@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NumberController : MonoBehaviour
 {
-    public int startMoney = 0;
-    public float startHealth = 10;
+    [Header("Max Values")]
+    [SerializeField] float maxHealth = 100;
+    [SerializeField] int maxInfluence = 100;
+    [SerializeField] int maxMorale = 100;
 
-    public TextMeshProUGUI money;
-    public TextMeshProUGUI influence;
+
+    public TextMeshProUGUI influenceText;
+    public TextMeshProUGUI moraleText;
+    public TextMeshProUGUI healthText;
     public TextMeshProUGUI influenceGain;
-    public TextMeshProUGUI morale;
-    public TextMeshProUGUI health;
+
+
+
+    [Header("Sliders")]
+    public Slider influence;
+    public Slider morale;
+    public Slider health;
     //public TextMeshProUGUI satiation;
     public static string HEALTHSTAT = "health";
     public static string INFLUENCESTAT = "influence";
@@ -25,10 +35,9 @@ public class NumberController : MonoBehaviour
 
     void SetInit() 
     {
-        PlayerPrefs.SetInt(MONEYSTAT, startMoney);
         PlayerPrefs.SetInt(INFLUENCESTAT, 0);
         PlayerPrefs.SetInt(MORALESTAT, 0);
-        PlayerPrefs.GetFloat(HEALTHSTAT, startHealth);
+        PlayerPrefs.GetFloat(HEALTHSTAT, maxHealth);
         PlayerPrefs.SetInt(DUDECOUNTER, 1);
     }
 
@@ -36,11 +45,12 @@ public class NumberController : MonoBehaviour
     {
         SetInit();
 
-        money.text = "" +PlayerPrefs.GetInt(MONEYSTAT);
-        influence.text = ""+PlayerPrefs.GetInt(INFLUENCESTAT);
-        morale.text = "" + PlayerPrefs.GetInt(MORALESTAT);
-        health.text = PlayerPrefs.GetFloat(HEALTHSTAT) + "%";
-        //satiation.text = PlayerPrefs.GetFloat(FOODLEFT) + "%";
+        influence.value = PlayerPrefs.GetInt(INFLUENCESTAT);
+        influenceText.text = influence.value + "/" + maxInfluence;
+        morale.value = PlayerPrefs.GetInt(MORALESTAT);
+        moraleText.text = morale.value + "/" + maxMorale;
+        health.value = PlayerPrefs.GetFloat(HEALTHSTAT);
+        healthText.text = health.value + "/" + maxHealth;
         StartCoroutine(GameTick());
     }
     IEnumerator GameTick()
@@ -60,12 +70,15 @@ public class NumberController : MonoBehaviour
             if (PlayerPrefs.GetFloat(HEALTHSTAT) <= 0) GameOver(); // end game
         }
 
-        money.text = "$" + PlayerPrefs.GetInt(MONEYSTAT);
-        influence.text = "" + PlayerPrefs.GetInt(INFLUENCESTAT);
-        morale.text = "" + PlayerPrefs.GetInt(MORALESTAT);
-        health.text = PlayerPrefs.GetFloat(HEALTHSTAT) + "%";
-        //satiation.text = PlayerPrefs.GetFloat(FOODLEFT) + "%";
+        // Update Sliders
+        influence.value = PlayerPrefs.GetInt(INFLUENCESTAT);
+        morale.value = PlayerPrefs.GetInt(MORALESTAT);
+        health.value = Mathf.Round(PlayerPrefs.GetFloat(HEALTHSTAT));
 
+        // Update Text
+        influenceText.text = influence.value + "/" + maxInfluence;
+        moraleText.text = morale.value + "/" + maxMorale;
+        healthText.text = health.value + "/" + maxHealth;
         StartCoroutine(GameTick());
     }
 
