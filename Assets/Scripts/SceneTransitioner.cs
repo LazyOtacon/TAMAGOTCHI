@@ -25,11 +25,12 @@ public class SceneTransitioner : MonoBehaviour
     }
     public void NewGame()
     {
-        PlayerPrefs.SetInt(NumberController.MONEYSTAT,0);
-        PlayerPrefs.SetInt(NumberController.INFLUENCESTAT,0);
-        PlayerPrefs.SetInt(NumberController.MORALESTAT,0);
-        PlayerPrefs.SetFloat(NumberController.HEALTHSTAT,100);
-        PlayerPrefs.SetInt(NumberController.DUDECOUNTER,0);
+        PlayerPrefs.SetInt(NumberController.MONEYSTAT, 0);
+        PlayerPrefs.SetInt(NumberController.INFLUENCESTAT, 0);
+        PlayerPrefs.SetInt(NumberController.MORALESTAT, 100);
+        PlayerPrefs.SetFloat(NumberController.HEALTHSTAT, 100);
+        PlayerPrefs.SetInt(NumberController.DUDECOUNTER, 1);
+        PlayerPrefs.SetInt(NumberController.FOODLEFT, 100);
         PlayerPrefs.SetInt(EXISTING_GAME, 1);
 
         SceneManager.LoadScene(sceneName);
