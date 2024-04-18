@@ -189,7 +189,7 @@ MonoBehaviour:
   health: 20
   damage: 10
   speed: -1
-  rb: {fileID: 0}
+  rb: {fileID: 8670012851055534807}
 --- !u!1 &7361169431405668653
 GameObject:
   m_ObjectHideFlags: 0

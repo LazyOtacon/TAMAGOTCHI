@@ -14,6 +14,7 @@ public class Attacking : MonoBehaviour
     {
         //StartCoroutine(Combat());
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag != gameObject.tag)
@@ -22,13 +23,14 @@ public class Attacking : MonoBehaviour
             StartCoroutine(Combat());
         }
     }
-    /*private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag != gameObject.tag)
         {
             inCombat = false;
+            StopCoroutine(Combat());
         }
-    }*/
+    }
     public IEnumerator Combat()
     {
         yield return new WaitForSeconds(1);
@@ -41,18 +43,22 @@ public class Attacking : MonoBehaviour
         {
             thisMind.health -= thisMind.damage;
         }
-        else
+        if (gameObject.tag == "Demons")
         {
             thisMind.health -= 5;
         }
         if (thisMind.health < 1)
         {
+            inCombat = false;
             Die();
+        }else if (inCombat)
+        {
+            StartCoroutine(Combat());
         }
     }
     public void Die()
     {
-        StartCoroutine (Combat());
+        StopCoroutine (Combat());
         Destroy(thisThing);
     }
 }

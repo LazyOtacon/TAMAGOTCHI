@@ -12,9 +12,9 @@ public class NumberController : MonoBehaviour
     [SerializeField] int maxMorale = 100;
 
 
-    public TextMeshProUGUI influenceText;
-    public TextMeshProUGUI moraleText;
-    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI influenceText = null;
+    public TextMeshProUGUI moraleText = null;
+    public TextMeshProUGUI healthText = null;
     public TextMeshProUGUI influenceGain;
 
 
