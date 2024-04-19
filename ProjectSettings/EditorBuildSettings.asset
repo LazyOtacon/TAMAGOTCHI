@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MoralDilemmas/Moral 5.unity
     guid: 3d3c419cba830b348a7b26e90e798f83
+  - enabled: 1
+    path: Assets/Scenes/StartScreen.unity
+    guid: 62a0f7e22692bbf488ec7e3a2bb93778
   m_configObjects: {}

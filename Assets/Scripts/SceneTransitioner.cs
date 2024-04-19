@@ -13,10 +13,10 @@ public class SceneTransitioner : MonoBehaviour
     public static string EXISTING_GAME = "newGameStarted";
     private void Start()
     {
-        GameObject buttonObject = continueGame.gameObject;
+        continueGame.interactable = false;
         if (PlayerPrefs.GetInt(EXISTING_GAME) == 1)
         {
-            buttonObject.SetActive(true);
+            continueGame.interactable = true;
         }
     }
     public void StartGame()
